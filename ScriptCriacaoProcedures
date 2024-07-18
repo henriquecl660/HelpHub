@@ -1,0 +1,196 @@
+CREATE PROCEDURE PR_INS_SOLICITACAO      
+      
+              
+ @PK_SOLICITACAO                      INT  
+,@TITULO            VARCHAR(150)  
+,@DT_CRIACAO                          DATETIME  
+,@PERGUNTA                            VARCHAR(200)  
+,@DESCRICAO                           VARCHAR(200)  
+,@QTE_CURTIDAS                        INT  
+,@FK_ID_SOLICITACAO_USUARIO           INT  
+,@FK_SOLICITACAO_USUARIO              INT  
+      
+AS      
+      
+ BEGIN      
+    
+      
+INSERT INTO DBO.SOLICITACAO       
+(      
+ PK_SOLICITACAO  
+,TITULO  
+,DT_CRIACAO  
+,PERGUNTA  
+,DESCRICAO  
+,QTE_CURTIDAS  
+,FK_ID_SOLICITACAO_USUARIO  
+,FK_SOLICITACAO_USUARIO    
+)      
+VALUES      
+(      
+ (SELECT COUNT(ID) + 1 FROM SOLICITACAO)      
+,@TITULO  
+,GETDATE()  
+,@PERGUNTA  
+,@DESCRICAO  
+,@QTE_CURTIDAS  
+,@FK_ID_SOLICITACAO_USUARIO  
+,@FK_SOLICITACAO_USUARIO  
+)      
+ END   
+  
+CREATE PROCEDURE PR_INS_RESPOSTA     
+      
+              
+ @ID INT  
+,@PK_RESPOSTA INT  
+,@DESCRICAO VARCHAR(200)  
+,@FK_ID_RESPOSTA_SOLICITACAO INT  
+,@FK_RESPOSTA_SOLICITACAO INT  
+,@ID_USUARIO_RESPOSTA INT  
+      
+AS      
+      
+ BEGIN      
+    
+      
+INSERT INTO DBO.RESPOSTA  
+(      
+ PK_RESPOSTA  
+,DESCRICAO  
+,FK_ID_RESPOSTA_SOLICITACAO  
+,FK_RESPOSTA_SOLICITACAO  
+,ID_USUARIO_RESPOSTA  
+)      
+VALUES      
+(      
+ (SELECT COUNT(ID) + 1 FROM DBO.RESPOSTA)  
+ ,@DESCRICAO  
+ ,@FK_ID_RESPOSTA_SOLICITACAO  
+ ,@FK_RESPOSTA_SOLICITACAO  
+ ,@ID_USUARIO_RESPOSTA  
+)      
+  
+  
+ END   
+  
+CREATE PROCEDURE PR_SEL_SOLICITACAO  
+AS    
+ BEGIN    
+  -- SET NOCOUNT ON added to prevent extra result sets from    
+  -- interfering with SELECT statements.    
+  SET NOCOUNT ON    
+  SELECT  
+   ID  
+  ,PK_SOLICITACAO  
+  ,TITULO  
+  ,DT_CRIACAO  
+  ,PERGUNTA  
+  ,DESCRICAO  
+  ,QTE_CURTIDAS  
+  ,FK_ID_SOLICITACAO_USUARIO  
+  ,FK_SOLICITACAO_USUARIO  
+  FROM  
+    SOLICITACAO  
+ END   
+   
+CREATE PROCEDURE PR_SEL_RESPOSTA    
+     @ID_SOLICITACAO INT    
+AS    
+ BEGIN    
+  -- SET NOCOUNT ON added to prevent extra result sets from    
+  -- interfering with SELECT statements.    
+  SET NOCOUNT ON    
+    
+ SELECT     
+  ID  
+ ,PK_RESPOSTA  
+ ,DESCRICAO  
+ ,FK_ID_RESPOSTA_SOLICITACAO  
+ ,FK_RESPOSTA_SOLICITACAO  
+ ,ID_USUARIO_RESPOSTA  
+ FROM     
+  RESPOSTA   
+ WHERE FK_ID_RESPOSTA_SOLICITACAO = @ID_SOLICITACAO  
+ END    
+  
+CREATE PROCEDURE PR_INS_USUARIO      
+      
+      
+   @PK_USUARIO               int       
+ ,@NOME                     varchar(200)      
+ ,@EMAIL                    varchar(200)      
+ ,@SENHA                    varchar(100)      
+ ,@TIPO_USUARIO             tinyint       
+ ,@DT_ULTIMO_LOGIN          datetime      
+ ,@QTDE_PERGUNTAS_ENV       int       
+ ,@QTDE_RESPOSTAS           int       
+ ,@CONTA_ENCERRADA          bit       
+ ,@FK_ID_USUARIO_DEPARMENTO int       
+ ,@FK_USUARIO_DEPARTAMENTO  int       
+      
+AS      
+      
+ BEGIN      
+  -- SET NOCOUNT ON added to prevent extra result sets from      
+  -- interfering with SELECT statements.      
+  SET NOCOUNT ON      
+      
+INSERT INTO DBO.USUARIO       
+(      
+ PK_USUARIO      
+,NOME      
+,EMAIL      
+,SENHA      
+,TIPO_USUARIO      
+,DT_ULTIMO_LOGIN      
+,QTDE_PERGUNTAS_ENV      
+,QTDE_RESPOSTAS      
+,CONTA_ENCERRADA      
+,FK_ID_USUARIO_DEPARMENTO      
+,FK_USUARIO_DEPARTAMENTO      
+)      
+VALUES      
+(      
+ (SELECT COUNT(ID) + 1 FROM USUARIO)      
+,@NOME      
+,@EMAIL      
+,@SENHA      
+,@TIPO_USUARIO      
+,GETDATE()      
+,@QTDE_PERGUNTAS_ENV      
+,@QTDE_RESPOSTAS      
+,@CONTA_ENCERRADA      
+,@FK_ID_USUARIO_DEPARMENTO      
+,@FK_USUARIO_DEPARTAMENTO      
+)      
+ END   
+
+CREATE PROCEDURE PR_SEL_USUARIO  
+AS  
+ BEGIN  
+  -- SET NOCOUNT ON added to prevent extra result sets from  
+  -- interfering with SELECT statements.  
+  SET NOCOUNT ON  
+  
+ SELECT   
+   ID  
+  ,PK_USUARIO  
+  ,NOME  
+  ,EMAIL  
+  ,SENHA  
+  ,TIPO_USUARIO  
+  ,DT_ULTIMO_LOGIN  
+  ,QTDE_PERGUNTAS_ENV  
+  ,QTDE_RESPOSTAS  
+  ,CONTA_ENCERRADA  
+  ,FK_ID_USUARIO_DEPARMENTO  
+  ,FK_USUARIO_DEPARTAMENTO  
+ FROM   
+  USUARIO  
+ END  
+    
+  
+    
+  
+  
