@@ -1,0 +1,112 @@
+----CREATE DATABASE DBHelpHub
+----USE DBHelpHub
+
+---- Script para criação das tabela DBHelpHub 
+
+---- ************************************** [dbo].[DEPARTAMENTO]
+--CREATE TABLE [dbo].[DEPARTAMENTO]
+--(
+-- [ID]              int IDENTITY (1, 1) NOT NULL ,
+-- [PK_DEPARTAMENTO] int,
+-- [NOME]            varchar(200) NOT NULL ,
+-- [QTD_PERGUNTAS]   int NOT NULL ,
+
+
+-- CONSTRAINT [PK_DEPARTAMENTO] PRIMARY KEY CLUSTERED ([ID] ASC, [PK_DEPARTAMENTO] ASC)
+--);
+--GO
+
+---- ************************************** [dbo].[USUARIO]
+--CREATE TABLE [dbo].[USUARIO]
+--(
+-- [ID]                       int IDENTITY (1, 1) NOT NULL ,
+-- [PK_USUARIO]               int NOT NULL ,
+-- [NOME]                     varchar(200) NOT NULL ,
+-- [EMAIL]                    varchar(200) NOT NULL ,
+-- [SENHA]                    varchar(100) NOT NULL ,
+-- [TIPO_USUARIO]             tinyint NOT NULL ,
+-- [DT_ULTIMO_LOGIN]          datetime NOT NULL ,
+-- [QTDE_PERGUNTAS_ENV]       int NOT NULL ,
+-- [QTDE_RESPOSTAS]           int NOT NULL ,
+-- [CONTA_ENCERRADA]          bit NOT NULL ,
+-- [FK_ID_USUARIO_DEPARMENTO] int NOT NULL ,
+-- [FK_USUARIO_DEPARTAMENTO]  int NOT NULL ,
+
+
+-- CONSTRAINT [PK_USUARIO] PRIMARY KEY CLUSTERED ([ID] ASC, [PK_USUARIO] ASC)
+--);
+--GO
+
+
+--CREATE NONCLUSTERED INDEX [FK_USUARIO_DEPARTAMENTO] ON [dbo].[USUARIO] 
+-- (
+--  [FK_ID_USUARIO_DEPARMENTO] ASC, 
+--  [FK_USUARIO_DEPARTAMENTO] ASC
+-- )
+
+--GO
+
+
+
+
+---- ************************************** [dbo].[RESPOSTA]
+--CREATE TABLE [dbo].[RESPOSTA]
+--(
+-- [ID]          int IDENTITY (1, 1) NOT NULL ,
+-- [PK_RESPOSTA] int,
+-- [DESCRICAO]   varchar(200) NOT NULL ,
+
+
+-- CONSTRAINT [PK_RESPOSTA] PRIMARY KEY CLUSTERED ([ID] ASC, [PK_RESPOSTA] ASC)
+--);
+--GO
+
+
+
+-- ************************************** [dbo].[SOLICITACAO]
+--CREATE TABLE [dbo].[SOLICITACAO]
+--(
+-- [ID]                        int IDENTITY (1, 1) NOT NULL ,
+-- [PK_SOLICITACAO]            int NOT NULL ,
+-- [TITULO]                    varchar(150) NOT NULL ,
+-- [DT_CRIACAO]                datetime NOT NULL ,
+-- [PERGUNTA]                  varchar(200) NOT NULL ,
+-- [DESCRICAO]                 varchar(200) NULL ,
+-- [QTE_CURTIDAS]              int NOT NULL ,
+-- [FK_ID_SOLICITACAO_USUARIO] int NOT NULL ,
+-- [FK_SOLICITACAO_USUARIO]    int NOT NULL ,
+-- CONSTRAINT [FK_ID_SOLICITACAO_USUARIO] PRIMARY KEY CLUSTERED ([ID] ASC, [PK_SOLICITACAO] ASC)
+--);
+--GO
+--CREATE NONCLUSTERED INDEX [FK_SOLICITACAO_USUARIO] ON [dbo].[SOLICITACAO] 
+-- (
+--  [FK_ID_SOLICITACAO_USUARIO] ASC, 
+--  [FK_SOLICITACAO_USUARIO] ASC
+-- )
+--GO
+
+
+
+
+-- ************************************** [dbo].[RESPOSTA]
+--CREATE TABLE [dbo].[RESPOSTA]
+--(
+-- [ID]                         int IDENTITY (1, 1) NOT NULL ,
+-- [PK_RESPOSTA]                int NOT NULL ,
+-- [DESCRICAO]                  varchar(200) NOT NULL ,
+-- [FK_ID_RESPOSTA_SOLICITACAO] int NOT NULL ,
+-- [FK_RESPOSTA_SOLICITACAO]    int NOT NULL ,
+-- CONSTRAINT [FK_ID_RESPOSTA_SOLICITACAO] PRIMARY KEY CLUSTERED ([ID] ASC, [PK_RESPOSTA] ASC),
+-- CONSTRAINT [FK_RESPOSTA_SOLICITACAO] FOREIGN KEY ([FK_ID_RESPOSTA_SOLICITACAO], [FK_RESPOSTA_SOLICITACAO])  REFERENCES [dbo].[SOLICITACAO]([ID], [PK_SOLICITACAO])
+--);
+--GO
+--CREATE NONCLUSTERED INDEX [FK_RESPOSTA_SOLICITACAO] ON [dbo].[RESPOSTA] 
+-- (
+--  [FK_ID_RESPOSTA_SOLICITACAO] ASC, 
+--  [FK_RESPOSTA_SOLICITACAO] ASC
+-- )
+--GO
+
+ 
+--ALTER TABLE DBO.RESPOSTA 
+--ADD ID_USUARIO_RESPOSTA INT NOT NULL
