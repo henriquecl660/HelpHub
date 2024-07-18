@@ -1,0 +1,58 @@
+﻿@model IEnumerable<HelpHub.Models.REQUESTRESPONSE>
+@{
+    ViewData["Title"] = "Área de Usuário";
+    @if (ViewBag.Message != null)
+    {
+        <script type="text/javascript">
+            window.onload = function () {
+                alert("@ViewBag.Message");
+            };
+        </script>
+    }
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+        <title class="text-center">
+            Resposta(s) da Solicitação
+        </title>
+
+
+
+</head>
+<body>
+<p>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ID)
+            </th>
+            <th>
+                    @Html.DisplayNameFor(model => model.DESCRICAO)
+                </th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                        @Html.DisplayFor(modelItem => item.ID)
+            </td>
+            <td>
+                        @Html.DisplayFor(modelItem => item.DESCRICAO)
+            </td>
+
+
+        </tr>
+}
+    </tbody>
+</table>
+</body>
+</html>
+
+

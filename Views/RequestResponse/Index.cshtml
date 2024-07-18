@@ -1,0 +1,29 @@
+﻿@{
+    ViewData["Title"] = "Resposta Solicitacao";
+    @if (ViewBag.Message != null)
+    {
+        <script type="text/javascript">
+            window.onload = function () {
+                alert("@ViewBag.Message");
+            };
+        </script>
+    }
+}
+
+<div class="text-center">
+    <h1 class="display">Inserir Resposta</h1>
+
+    <form asp-action="Create" onsubmit="var selrr=document.getElementById('FK_ID_RESPOSTA_SOLICITACAO');document.getElementById('FK_RESPOSTA_SOLICITACAO').value=selrr.selectedIndex;">
+        <label for="text"> Selecione a Solicitação que deseja responder:</label><br />
+        <select asp-items="@ViewBag.lstDescricaoSolicitacao" class="form-control" name="FK_ID_RESPOSTA_SOLICITACAO" id="FK_ID_RESPOSTA_SOLICITACAO">
+
+        </select>
+        <label for="text">Descrição:</label><br>
+        <textarea id="DESCRICAO" name="DESCRICAO" rows="2" cols="50">
+        </textarea>
+        <p></p>
+        <input type="hidden" name="FK_RESPOSTA_SOLICITACAO" id="FK_RESPOSTA_SOLICITACAO" />
+        <input type="submit" value="Responder Solicitacao">
+    </form>
+
+</div>

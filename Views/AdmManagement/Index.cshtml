@@ -1,0 +1,85 @@
+﻿@model IEnumerable<HelpHub.Models.USUARIO>
+@{
+    ViewData["Title"] = "Área de Gestão Administrativa";
+    @if (ViewBag.Message != null)
+    {
+        <script type="text/javascript">
+            window.onload = function () {
+                alert("@ViewBag.Message");
+            };
+        </script>
+    }
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title class="text-center">
+        Usuário(s) Cadastrados
+    </title>
+
+
+
+</head>
+<body>
+    <p>
+    </p>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.ID)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.NOME)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.EMAIL)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.TIPO_USUARIO)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.CONTA_ENCERRADA)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.DT_ULTIMO_LOGIN)
+                </th>
+
+
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ID)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NOME)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.EMAIL)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TIPO_USUARIO)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CONTA_ENCERRADA)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DT_ULTIMO_LOGIN)
+                    </td>
+
+
+                </tr>
+            }
+        </tbody>
+    </table>
+</body>
+</html>
+
+

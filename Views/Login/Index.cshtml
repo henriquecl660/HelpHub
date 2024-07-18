@@ -1,0 +1,27 @@
+﻿@{
+    ViewData["Title"] = "Login";
+    @if (ViewBag.Message != null)
+    {
+        <script type="text/javascript">
+            window.onload = function () {
+                alert("@ViewBag.Message");
+            };
+        </script>
+    }
+}
+
+
+<div class="text-center">
+    <h1 class="display">Login</h1>
+    <form asp-action="Valida">
+        <label for="NOME">E-mail ou Nome de Usuário:</label><br>
+        <input type="text" id="loginOrEmail" name="loginOrEmail" value=""><br>
+        <label for="SENHA">Senha:</label><br>
+        <input type="password" id="senha" name="senha" value=""><br><br>
+        <input type="submit" value="Login">
+    </form>
+
+    <p>Esqueceu sua senha?</p>
+    <p>Envie e-mail para: henriquecl660@gmail.com</p>
+
+</div>

@@ -1,0 +1,74 @@
+﻿@model IEnumerable<HelpHub.Models.SOLICITACAO>
+@{
+    ViewData["Title"] = "Área de Usuário";
+    @if (ViewBag.Message != null)
+    {
+        <script type="text/javascript">
+            window.onload = function () {
+                alert("@ViewBag.Message");
+            };
+        </script>
+    }
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+        <title class="text-center">
+            Área de Usuário
+        </title>
+
+
+
+</head>
+<body>
+<p>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TITULO)
+            </th>
+            <th>
+                @Html.DisplayName("DATA DE CRIAÇÃO")
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PERGUNTA)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                        @Html.DisplayFor(modelItem => item.ID)
+            </td>
+            <td>
+                        @Html.DisplayFor(modelItem => item.TITULO)
+            </td>
+            <td>
+                        @Html.DisplayFor(modelItem => item.DT_CRIACAO)
+            </td>
+            <td>
+                        @Html.DisplayFor(modelItem => item.PERGUNTA)
+            </td>
+
+           <td>
+                        <a asp-action="Requests" asp-route-id="@item.ID">Ver respostas</a> |
+
+           </td>
+
+        </tr>
+}
+    </tbody>
+</table>
+</body>
+</html>
+
+

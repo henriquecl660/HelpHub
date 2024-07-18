@@ -1,0 +1,46 @@
+﻿@{
+    @if (ViewBag.Message != null)
+    {
+        <script type="text/javascript">
+            window.onload = function () {
+                alert("@ViewBag.Message");
+            };
+        </script>
+
+
+    }
+    ViewData["Title"] = "Cadastro";
+}
+
+<div class="text-center">
+    <h1 class="display">Cadastre-se</h1>
+
+    <form asp-action="Create" onsubmit="var sel=document.getElementById('FK_ID_USUARIO_DEPARTAMENTO');document.getElementById('FK_USUARIO_DEPARTAMENTO').value=sel.selectedIndex;">
+        <label for="text">Nome Completo:</label><br>
+        <input type="text" id="NOME" name="NOME" value=""><br>
+        <label for="FK_ID_USUARIO_DEPARTAMENTO">    Escolha um departamento:
+         <p></p>
+        <select name="FK_ID_USUARIO_DEPARTAMENTO" id="FK_ID_USUARIO_DEPARTAMENTO">
+        <option value="1">RH </option>
+        <option value="2">CONTABILIDADE</option>
+        <option value="3">FINANCEIRO</option>
+        <option value="4">JURIDICO</option>
+        <option value="5">TI-OPERACOES</option>
+        <option value="6">TI-DESENVOLVIMENTO</option>
+        <option value="7">TI-BANCO DE DADOS</option>
+        <option value="8">TI-GERENCIA</option>
+        <option value="9">PRODUTO </option>
+        <option value="10">MARKETING</option>
+        <option value="11">ADMINISTRATIVO</option>
+        </select>
+        </label>
+        <p></p>
+        <input type="hidden" name="FK_USUARIO_DEPARTAMENTO" id="FK_USUARIO_DEPARTAMENTO" />
+        <label for="EMAIL">E-Mail:</label><br>
+        <input type="email" id="EMAIL" name="EMAIL" value=""><br><br>
+        <label for="SENHA">Senha:</label><br>
+        <input type="password" id="SENHA" name="SENHA" value=""><br><br>
+        <input type="submit" value="Cadastrar Usuario">
+    </form>
+
+</div>

@@ -1,0 +1,30 @@
+﻿@{
+    ViewData["Title"] = "Cadastro Solicitacao";
+    @if (ViewBag.Message != null)
+    {
+        <script type="text/javascript">
+            window.onload = function () {
+                alert("@ViewBag.Message");
+            };
+        </script>
+    }
+}
+
+<div class="text-center">
+    <h1 class="display">Nova Solicitação de Ajuda</h1>
+
+    <form asp-action="Create">
+        <label for="text">Título da Postagem:</label><br>
+        <input type="text" id="TITULO" name="TITULO" value=""><br>
+        <label for="text">Pergunta:</label><br>
+        <textarea id="PERGUNTA" name="PERGUNTA" rows="2" cols="50">
+        </textarea>
+        <br>
+        <label for="text">Descrição:</label><br>
+        <textarea id="DESCRICAO" name="DESCRICAO" rows="2" cols="50">
+        </textarea>
+        <p></p>
+        <input type="submit" value="Cadastrar Solicitação">
+    </form>
+
+</div>
